@@ -2,8 +2,14 @@
 #include <string>
 #include "kvstore.h"
 
-int main() {
-    KVStore store;
+int main(int argc, char* argv[]) {
+    std::string db_name = "default";
+
+    if (argc > 1) {
+        db_name = argv[1];
+    }
+
+    KVStore store(db_name);
     std::string inp;
 
     while (true) {
