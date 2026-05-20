@@ -7,11 +7,13 @@
 
 class KVStore {
 public:
+    KVStore();
     void set(const std::string& key, const std::string& value);
     std::optional<std::string> get(const std::string& key);
     void del(const std::string& key);
 
 private:
+    void apply_command(const std::string& line);
     std::unordered_map<std::string, std::string> store;
 };
 
