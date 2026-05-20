@@ -13,7 +13,7 @@ int main() {
         if (inp == "exit") break;
 
         // GET
-        if (inp.rfind("get ", 0) == 0) {
+        if (inp.rfind("GET ", 0) == 0) {
             std::string key = inp.substr(4);
 
             auto result = store.get(key);
@@ -25,7 +25,7 @@ int main() {
         }
 
         // SET
-        else if (inp.rfind("set ", 0) == 0) {
+        else if (inp.rfind("SET ", 0) == 0) {
             std::string rest = inp.substr(4);
 
             std::size_t space = rest.find(' ');
@@ -42,7 +42,7 @@ int main() {
         }
 
         // DEL
-        else if (inp.rfind("del ", 0) == 0) {
+        else if (inp.rfind("DEL ", 0) == 0) {
             std::string key = inp.substr(4);
             store.del(key);
             std::cout << "deleted" << std::endl;
