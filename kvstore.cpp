@@ -4,9 +4,10 @@
 #include <fstream>
 #include <iostream>
 
-KVStore::KVStore() {
+KVStore::KVStore(const std::string& db_name)
+    : filename(db_name + ".log") {
     std::string line;
-    std::ifstream file("log.txt");
+    std::ifstream file(filename);
     while (getline (file, line)) {
         apply_command(line);
     }
@@ -16,7 +17,7 @@ KVStore::KVStore() {
 void KVStore::set(const std::string& key, const std::string& value) {
     store[key] = value;
 
-    std::ofstream file("log.txt", std::ios::app);
+    std::ofstream file(filename, std::ios::app);
     file << "SET " + key + " " + value + "\n";
     file.close();
 }
@@ -34,7 +35,7 @@ std::optional<std::string> KVStore::get(const std::string& key) {
 void KVStore::del(const std::string& key) {
     store.erase(key);
 
-    std::ofstream file("log.txt", std::ios::app);
+    std::ofstream file(filename, std::ios::app);
     file << "DEL " + key + "\n";
     file.close();
 }
