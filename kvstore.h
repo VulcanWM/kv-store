@@ -9,8 +9,9 @@ class KVStore {
 public:
     KVStore(const std::string& db_name);
     void set(const std::string& key, const std::string& value);
-    std::optional<std::string> get(const std::string& key);
+    std::optional<std::string> get(const std::string& key) const;
     void del(const std::string& key);
+    void compact();
 
 private:
     std::string filename;
